@@ -1,0 +1,16 @@
+max_pv_claims   = 5
+max_deployments = 10
+max_jobs        = 3
+max_pods        = 30
+max_cpu         = 1
+max_memory      = "1Gi"
+max_storage     = "12Gi"
+name            = "my-org"
+namespace       = "goci"
+image_pull_secrets = {
+  secret = <<EOF
+{
+  docker config file
+}
+EOF
+}
