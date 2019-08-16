@@ -7,11 +7,6 @@ variable "namespace" {
   description = "The namespace or overall product"
 }
 
-variable "environment" {
-  default     = "staging"
-  description = "Environment, e.g. 'prod', 'staging', 'dev', 'pre-prod', 'UAT'"
-}
-
 variable "stage" {
   default     = "staging"
   description = "Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release'"
@@ -65,5 +60,6 @@ variable "max_memory" {
 }
 
 variable "max_storage" {
+  default     = "50Gi"
   description = "Maximum amount of storage per persistent volume claim"
 }
