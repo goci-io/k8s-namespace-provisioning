@@ -42,12 +42,12 @@ resource "kubernetes_resource_quota" "limits" {
 
   spec {
     hard = {
-      "pods"                   = var.max_pods
-      "persistentvolumeclaims" = var.max_pv_claims
+      "pods"                         = var.max_pods
+      "persistentvolumeclaims"       = var.max_pv_claims
       "count/jobs.batch"             = var.max_jobs
       "count/deployments.apps"       = var.max_deployments
-      "count/services.loadbalancers" = 0
-      "count/services.nodeports"     = 0
+      "count/services.loadbalancers" = var.max_load_balancers
+      "count/services.nodeports"     = var.max_node_ports
     }
   }
 }

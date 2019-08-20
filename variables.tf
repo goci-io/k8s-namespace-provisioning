@@ -63,3 +63,12 @@ variable "max_storage" {
   default     = "50Gi"
   description = "Maximum amount of storage per persistent volume claim"
 }
+
+variable "max_load_balancers" {
+  description = "Maximum amount of services with type LoadBalancer"
+}
+
+
+variable "max_node_ports" {
+  description = "Maximum amount of services with type NodePort"
+}
