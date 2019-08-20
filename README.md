@@ -1,5 +1,7 @@
 # k8s-namespace-provisioning
 
+#### Maintained by [@goci-io/prp-terraform](https://github.com/orgs/goci-io/teams/prp-terraform)
+
 This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas and limits and limited rbac permissions.
 
 
