@@ -2,7 +2,7 @@
 
 #### Maintained by [@goci-io/prp-terraform](https://github.com/orgs/goci-io/teams/prp-terraform)
 
-This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas, limits and limited rbac permissions as well as a service account with appropriate permissions.
+This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas, limits and a service account with limited rbac permissions.
 
 
 ### Usage
