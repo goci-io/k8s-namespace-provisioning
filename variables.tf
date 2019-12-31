@@ -1,10 +1,6 @@
-variable "region" {
-  default     = "eu-central-1"
-  description = "The region to create resources in"
-}
 
 variable "namespace" {
-  description = "The namespace or overall product"
+  description = "The organizations prefix or namespace"
 }
 
 variable "stage" {
@@ -35,6 +31,7 @@ variable "image_pull_secrets" {
 }
 
 variable "max_pv_claims" {
+  default     = 30
   description = "Maximum amount of PersistentVolumeClaims which can be claimed within this namespace"
 }
 
@@ -64,10 +61,12 @@ variable "max_storage" {
 }
 
 variable "max_load_balancers" {
+  default     = 1
   description = "Maximum amount of services with type LoadBalancer"
 }
 
 variable "max_node_ports" {
+  default     = 0
   description = "Maximum amount of services with type NodePort"
 }
 

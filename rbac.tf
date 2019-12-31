@@ -3,7 +3,7 @@ resource "kubernetes_role" "deployment" {
     name = module.label.id
 
     labels = {
-      namespace = module.label.id
+      namespace = kubernetes_namespace.namespace.metadata.0.name
       stage     = var.stage
       type      = "apps"
     }
@@ -31,7 +31,7 @@ resource "kubernetes_role" "deployment" {
 resource "kubernetes_role_binding" "example" {
   metadata {
     name      = module.label.id
-    namespace = module.label.id
+    namespace = kubernetes_namespace.namespace.metadata.0.name
   }
 
   role_ref {
@@ -43,6 +43,6 @@ resource "kubernetes_role_binding" "example" {
   subject {
     kind      = "ServiceAccount"
     name      = "${module.label.id}-apps"
-    namespace = module.label.id
+    namespace = kubernetes_namespace.namespace.metadata.0.name
   }
 }

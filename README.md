@@ -4,10 +4,9 @@
 
 This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas, limits and a service account with limited rbac permissions.
 
-
 ### Usage
 
-Look into the [terraform.tfvars](terraform.tfvars.example) example file.
+Look into the [terraform.tfvars](terraform.tfvars.example) example file or find more variables in the [variables.tf](variables.tf).
 
 ```hcl
 module "label" {
@@ -25,6 +24,8 @@ module "label" {
   }
 }
 ```
+
+This module is not specific to a any cloud provider. Therefore please note that you are responsible to define a file with a backend configuration for terraform state. 
 
 #### Verify
 
