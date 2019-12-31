@@ -8,8 +8,9 @@ resource "kubernetes_network_policy" "deny_all" {
   }
 
   spec {
-    pod_selector = {}
-    ingress      = []
+    policy_types = ["Ingress", "Egress"]
+    pod_selector {}
+    ingress      {}
   }
 }
 
@@ -23,7 +24,7 @@ resource "kubernetes_network_policy" "allow_http" {
 
   spec {
     policy_types = ["Ingress", "Egress"]
-    pod_selector = {}
+    pod_selector {}
 
     ingress {
       ports {
@@ -41,7 +42,7 @@ resource "kubernetes_network_policy" "allow_http" {
 
         content {
           namespace_selector {
-            match_labels {
+            match_labels = {
               name = from.value
             }
           }
@@ -55,18 +56,20 @@ resource "kubernetes_network_policy" "allow_http" {
 
         content {
           namespace_selector {
-            match_labels {
+            match_labels = {
               name = to.value
             }
           }
         }
       }
 
-      dynamic "ip_block" {
+      dynamic "to" {
         for_each = var.http_egress_ip_blocks
 
         content {
-          cidr = ip_block.value
+          ip_block {
+            cidr = ip_block.value
+          }
         }
       }
     }
