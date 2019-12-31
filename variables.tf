@@ -92,5 +92,5 @@ variable "http_egress_ip_blocks" {
 variable "http_ingress_namespaces" {
   type        = list(string)
   default     = ["cluster"]
-  description = "Namespaces to allow egress traffic to"
+  description = "Namespaces to allow ingress traffic from"
 }
