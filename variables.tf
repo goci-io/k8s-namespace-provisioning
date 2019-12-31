@@ -30,6 +30,12 @@ variable "image_pull_secrets" {
   description = "Pull secrets to provide to the service account to fetch docker images"
 }
 
+variable "enabled_rbac_binding" {
+  type        = bool
+  default     = true
+  description = "Deploys additional RBAC role binding to a service account named like the namespace (+-apps)"
+}
+
 variable "max_pv_claims" {
   default     = 30
   description = "Maximum amount of PersistentVolumeClaims which can be claimed within this namespace"
