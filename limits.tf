@@ -2,7 +2,7 @@
 resource "kubernetes_limit_range" "limits" {
   metadata {
     name      = module.label.id
-    namespace = module.label.id
+    namespace = kubernetes_namespace.namespace.metadata.0.name
   }
 
   spec {
@@ -37,7 +37,7 @@ resource "kubernetes_limit_range" "limits" {
 resource "kubernetes_resource_quota" "limits" {
   metadata {
     name      = module.label.id
-    namespace = module.label.id
+    namespace = kubernetes_namespace.namespace.metadata.0.name
   }
 
   spec {
