@@ -34,7 +34,6 @@ variable "image_pull_secrets" {
   description = "Pull secrets to provide to the service account to fetch docker images"
 }
 
-
 variable "max_pv_claims" {
   description = "Maximum amount of PersistentVolumeClaims which can be claimed within this namespace"
 }
@@ -68,7 +67,30 @@ variable "max_load_balancers" {
   description = "Maximum amount of services with type LoadBalancer"
 }
 
-
 variable "max_node_ports" {
   description = "Maximum amount of services with type NodePort"
+}
+
+variable "enable_network_policies" {
+  type        = bool
+  default     = true
+  description = "Deploys additional kubernetes network policies for the namespace created" 
+}
+
+variable "http_egress_namespaces" {
+  type        = list(string)
+  default     = ["default", "cluster"]
+  description = "Namespaces to allow egress traffic to"
+}
+
+variable "http_egress_ip_blocks" {
+  type        = list(string)
+  default     = []
+  description = "IP Blocks to allow egress traffic to. Could be a NAT Gateway IP /32 to allow only Internet Traffic"
+}
+
+variable "http_ingress_namespaces" {
+  type        = list(string)
+  default     = ["cluster"]
+  description = "Namespaces to allow egress traffic to"
 }
