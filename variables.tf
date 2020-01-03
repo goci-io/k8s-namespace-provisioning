@@ -8,6 +8,11 @@ variable "stage" {
   description = "Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release'"
 }
 
+variable "environment" {
+  default     = ""
+  description = "Additional environment label. Eg if stage does not match the environment" 
+}
+
 variable "name" {
   description = "Solution name, e.g. 'app' or 'jenkins'"
 }
