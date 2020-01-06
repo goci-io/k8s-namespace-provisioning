@@ -9,7 +9,7 @@ This terraform module provisions a ready to use namespace with docker registry s
 Look into the [terraform.tfvars](terraform.tfvars.example) example file or find more variables in the [variables.tf](variables.tf).
 
 ```hcl
-module "label" {
+module "namespace" {
   source     = "git::https://github.com/goci-io/k8s-namespace-provisioning.git?ref=master"
   namespace  = "goci"
   stage      = "staging"
