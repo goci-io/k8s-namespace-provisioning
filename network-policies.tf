@@ -10,7 +10,7 @@ resource "kubernetes_network_policy" "deny_all" {
   spec {
     policy_types = ["Ingress", "Egress"]
     pod_selector {}
-    ingress      {}
+    ingress {}
   }
 }
 
