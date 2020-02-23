@@ -10,7 +10,7 @@ variable "stage" {
 
 variable "environment" {
   default     = ""
-  description = "Additional environment label. Eg if stage does not match the environment" 
+  description = "Additional environment label. Eg if stage does not match the environment"
 }
 
 variable "name" {
@@ -90,7 +90,7 @@ variable "max_node_ports" {
 variable "enable_network_policies" {
   type        = bool
   default     = true
-  description = "Deploys additional kubernetes network policies for the namespace created" 
+  description = "Deploys additional kubernetes network policies for the namespace created"
 }
 
 variable "http_egress_namespaces" {
