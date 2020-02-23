@@ -23,6 +23,12 @@ variable "annotations" {
   description = "Additional annotations to attach to the namespace (eg: to allow certain kiam roles to be assumed)"
 }
 
+variable "labels" {
+  type        = map(string)
+  default     = {}
+  description = "Labels to attach to the kubernetes namespace"
+}
+
 variable "attributes" {
   type        = "list"
   default     = []
