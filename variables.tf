@@ -18,7 +18,7 @@ variable "name" {
 }
 
 variable "annotations" {
-  type        = "map"
+  type        = map(string)
   default     = {}
   description = "Additional annotations to attach to the namespace (eg: to allow certain kiam roles to be assumed)"
 }
@@ -30,13 +30,13 @@ variable "labels" {
 }
 
 variable "attributes" {
-  type        = "list"
+  type        = list(string)
   default     = []
   description = "Additional attributes of the label"
 }
 
 variable "image_pull_secrets" {
-  type        = "map"
+  type        = map
   default     = {}
   description = "Pull secrets to provide to the service account to fetch docker images"
 }
@@ -48,41 +48,52 @@ variable "enabled_rbac_binding" {
 }
 
 variable "max_pv_claims" {
+  type        = number
   default     = 30
   description = "Maximum amount of PersistentVolumeClaims which can be claimed within this namespace"
 }
 
 variable "max_deployments" {
+  type        = number
+  default     = 100
   description = "Maximum amount of Deployments allowed in this namespace"
 }
 
 variable "max_jobs" {
+  type        = number
   description = "Maximum amount of Jobs allowed in this namespace"
 }
 
 variable "max_pods" {
+  type        = number
+  default     = 2500
   description = "Maximum amount of in parallel running pods in this namespace"
 }
 
 variable "max_cpu" {
+  type        = number
   description = "Maximum CPU allocation possible per container in this namespace"
 }
 
 variable "max_memory" {
+  type        = number
   description = "Maximum amount of memory usage per container in this namespace"
 }
 
 variable "max_storage" {
-  default     = "50Gi"
+  type        = string
+  default     = "500Gi"
   description = "Maximum amount of storage per persistent volume claim"
 }
 
 variable "max_load_balancers" {
+  type        = number
   default     = 1
   description = "Maximum amount of services with type LoadBalancer"
 }
 
 variable "max_node_ports" {
+  type        = number
   default     = 0
   description = "Maximum amount of services with type NodePort"
 }
