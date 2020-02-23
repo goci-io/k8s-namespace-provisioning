@@ -72,12 +72,12 @@ variable "max_pods" {
 }
 
 variable "max_cpu" {
-  type        = number
+  type        = string
   description = "Maximum CPU allocation possible per container in this namespace"
 }
 
 variable "max_memory" {
-  type        = number
+  type        = string
   description = "Maximum amount of memory usage per container in this namespace"
 }
 
