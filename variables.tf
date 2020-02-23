@@ -1,10 +1,11 @@
 
 variable "namespace" {
+  default     = ""
   description = "The organizations prefix or namespace"
 }
 
 variable "stage" {
-  default     = "staging"
+  default     = ""
   description = "Stage, e.g. 'prod', 'staging', 'dev', OR 'source', 'build', 'test', 'deploy', 'release'"
 }
 
