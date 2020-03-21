@@ -55,19 +55,17 @@ variable "max_pv_claims" {
 }
 
 variable "max_deployments" {
-  type        = number
-  default     = 100
+  default     = "100"
   description = "Maximum amount of Deployments allowed in this namespace"
 }
 
 variable "max_jobs" {
-  type        = number
+  default     = "100"
   description = "Maximum amount of Jobs allowed in this namespace"
 }
 
 variable "max_pods" {
-  type        = number
-  default     = 2500
+  default     = "1k"
   description = "Maximum amount of in parallel running pods in this namespace"
 }
 
