@@ -2,7 +2,7 @@
 
 #### Maintained by [@goci-io/prp-terraform](https://github.com/orgs/goci-io/teams/prp-terraform)
 
-![Terraform Validate](https://github.com/goci-io/k8s-namespace-provisioning/workflows/Terraform%20Validate/badge.svg)
+![terraform](https://github.com/goci-io/k8s-namespace-provisioning/workflows/terraform/badge.svg?branch=master)
 
 This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas, limits and a service account with limited rbac permissions.
 
