@@ -68,7 +68,7 @@ resource "kubernetes_network_policy" "allow_http" {
 
         content {
           ip_block {
-            cidr = ip_block.value
+            cidr = to.value
           }
         }
       }
