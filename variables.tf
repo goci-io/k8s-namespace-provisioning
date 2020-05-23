@@ -97,6 +97,16 @@ variable "max_node_ports" {
   description = "Maximum amount of services with type NodePort"
 }
 
+variable "service_accounts" {
+  type        = list(object({
+    name               = string
+    rules              = any # [{api_groups=[""],resources=["pod"],verbs=["get", "list"]}]
+    image_pull_secrets = list(string)
+  }))
+  default     = []
+  description = "Creates additional service accounts with a dedicated RBAC role"
+}
+
 variable "enable_network_policies" {
   type        = bool
   default     = true
