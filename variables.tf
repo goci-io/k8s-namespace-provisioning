@@ -42,12 +42,6 @@ variable "image_pull_secrets" {
   description = "Pull secrets to provide to the service account to fetch docker images"
 }
 
-variable "enabled_rbac_binding" {
-  type        = bool
-  default     = true
-  description = "Deploys additional RBAC role binding to a service account named like the namespace (+-apps)"
-}
-
 variable "max_pv_claims" {
   type        = number
   default     = 30
@@ -105,6 +99,18 @@ variable "service_accounts" {
   }))
   default     = []
   description = "Creates additional service accounts with a dedicated RBAC role"
+}
+
+variable "enable_pod_security_policy" {
+  type        = bool
+  default     = true
+  description = "Deploys a Pod Security Policy which does not allow root or host access"
+}
+
+variable "pod_security_policy_name" {
+  type        = string
+  default     = "default"
+  description = "Allows all authenticated users/service accounts in the current namespace to use the specified security policy"
 }
 
 variable "enable_network_policies" {
