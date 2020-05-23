@@ -98,7 +98,7 @@ variable "max_node_ports" {
 }
 
 variable "service_accounts" {
-  type        = list(object({
+  type = list(object({
     name               = string
     rules              = any # [{api_groups=[""],resources=["pod"],verbs=["get", "list"]}]
     image_pull_secrets = list(string)
