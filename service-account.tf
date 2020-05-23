@@ -19,7 +19,7 @@ resource "kubernetes_role" "service_accounts" {
   count = length(var.service_accounts)
 
   metadata {
-    name      = lookup(var.service_accounts[count.index], "name", "default")
+    name      = lookup(var.service_accounts[count.index], "name")
     namespace = kubernetes_namespace.namespace.metadata.0.name
   }
 
@@ -34,28 +34,13 @@ resource "kubernetes_role" "service_accounts" {
   }
 }
 
-resource "kubernetes_role_binding" "sa_binding" {
-  count = length(var.service_accounts)
-
-  metadata {
-    name      = lookup(var.service_accounts[count.index], "name", "default")
-    namespace = kubernetes_namespace.namespace.metadata.0.name
-  }
-
-  role_ref {
-    name      = element(kubernetes_role.service_accounts.*.metadata.0.name, count.index)
-    api_group = "rbac.authorization.k8s.io"
-    kind      = "Role"
-  }
-
-  subject {
-    kind      = "ServiceAccount"
-    name      = element(kubernetes_service_account.users.*.metadata.0.name, count.index)
-    namespace = kubernetes_namespace.namespace.metadata.0.name
-  }
-}
-
 locals {
+  service_accounts_roles = [for s in var.service_accounts : {
+    name             = s.name
+    rules            = s.rules
+    service_accounts = s.name
+  }]
+
   pull_secret_keys = keys(var.image_pull_secrets)
 }
 

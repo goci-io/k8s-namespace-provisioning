@@ -91,6 +91,12 @@ variable "max_node_ports" {
   description = "Maximum amount of services with type NodePort"
 }
 
+variable "roles" {
+  type        = any
+  default     = []
+  description = "List of additional RBAC roles and bindings to deploy. List of name and rules. To bind the rules use service_accounts, groups or users list."
+}
+
 variable "service_accounts" {
   type = list(object({
     name               = string
