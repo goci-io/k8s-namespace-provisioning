@@ -2,12 +2,12 @@ resource "kubernetes_role" "deployment" {
   count = var.enabled_rbac_binding ? 1 : 0
 
   metadata {
-    name = module.label.id
+    name      = "apps-default"
+    namespace = kubernetes_namespace.namespace.metadata.0.name
 
     labels = {
-      namespace = kubernetes_namespace.namespace.metadata.0.name
-      stage     = var.stage
-      type      = "apps"
+      stage = var.stage
+      type  = "apps"
     }
   }
 
@@ -15,18 +15,6 @@ resource "kubernetes_role" "deployment" {
     api_groups = [""]
     resources  = ["pods", "services", "endpoints", "secrets", "configmaps"]
     verbs      = ["get", "list", "watch"]
-  }
-
-  rule {
-    api_groups = ["extensions"]
-    resources  = ["ingresses"]
-    verbs      = ["get", "list", "watch"]
-  }
-
-  rule {
-    api_groups = ["extensions"]
-    resources  = ["ingresses/status"]
-    verbs      = ["update"]
   }
 }
 
