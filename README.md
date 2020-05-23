@@ -4,7 +4,7 @@
 
 ![terraform](https://github.com/goci-io/k8s-namespace-provisioning/workflows/terraform/badge.svg?branch=master)
 
-This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas, limits and a service account with limited rbac permissions.
+This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas and limits. Additionally it allows everyone in the namespace to use a Pod security policy specified by `pod_security_policy_name`. This behaviour can also be disabled. We suggest to install a default PSP which does not allow Pods without a Security Context or using inapproriate permissions.
 
 ### Usage
 
