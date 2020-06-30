@@ -4,7 +4,7 @@
 
 ![terraform](https://github.com/goci-io/k8s-namespace-provisioning/workflows/terraform/badge.svg?branch=master)
 
-This terraform module provisions a ready to use namespace with docker registry secrets, resource quotas and limits. Additionally it allows everyone in the namespace to use a Pod security policy specified by `pod_security_policy_name`. This behaviour can also be disabled. We suggest to install a default PSP which does not allow Pods without a Security Context or using inapproriate permissions.
+This Terraform Module provisions a ready to use [Kubernetes Namespace](https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/) with Docker Registry Secrets, Resource-Quotas and Limit Ranges, as well as additional Service Accounts, Roles and RoleBindings. You can also restrict Ingress- and Egress Traffic to and from Namespaces as well as CIDRs. It can also allow Access to your [Pod Security Policies](#pod-security-policy)
 
 ### Usage
 
@@ -12,7 +12,7 @@ Look into the [terraform.tfvars](terraform.tfvars.example) example file or find 
 
 ```hcl
 module "namespace" {
-  source     = "git::https://github.com/goci-io/k8s-namespace-provisioning.git?ref=master"
+  source     = "git::https://github.com/goci-io/k8s-namespace-provisioning.git?ref=tags/<latest-version>"
   namespace  = "goci"
   stage      = "staging"
   attributes = ["team"]
@@ -27,12 +27,17 @@ module "namespace" {
 }
 ```
 
-This module is not specific to a any cloud provider. Therefore please note that you are responsible to define a file with a backend configuration for terraform state. 
-
 #### Verify
 
 Verify the namespace by running `kubectl describe ns <namespace>-<stage>-<name>-<attributes>`
 
+### Pod Security Policy
+
+[Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) can be used to add an additional Layer of Security to your Namespaces, preventing unauthorized people to create Pods with dangerous settings. This module does **not** create a Pod Security Policy for you as it is a global Cluster Resource.
+You need to specify your PSP-Name using `pod_security_policy_name` and set `enable_pod_security_policy` to `true`. 
+
+By default we allow `system:serviceaccounts:<namespace>` to use the PSP which enables for example default Service Accounts in your Namespace, created for your Deployments to create Pods matching the criterias specified in your PSP. If you want to allow for example humans creating Pods you will need to specify corresponding RBAC policies using `roles` variable which creates a Role and RoleBinding.
+
 ### Context
 
-This module is used for go-ci to provision kubernetes namespaces for our customers.
+This module is used at [goci.io](https://goci.io) to provision Kubernetes Namespaces for our Customers.

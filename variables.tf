@@ -107,16 +107,16 @@ variable "service_accounts" {
   description = "Creates additional service accounts with a dedicated RBAC role"
 }
 
-variable "enable_pod_security_policy" {
-  type        = bool
-  default     = true
-  description = "Deploys a Pod Security Policy which does not allow root or host access"
-}
-
 variable "pod_security_policy_name" {
   type        = string
-  default     = "default"
-  description = "Allows all authenticated users/service accounts in the current namespace to use the specified security policy"
+  default     = ""
+  description = "Allows all service accounts in the current namespace to use the specified security policy"
+}
+
+variable "pod_security_policy_groups" {
+  type        = list(string)
+  default     = ["system:serviceaccounts"]
+  description = "Groups allowed to use the PSP specified in pod_security_policy_name"
 }
 
 variable "enable_network_policies" {
