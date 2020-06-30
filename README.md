@@ -34,7 +34,7 @@ Verify the namespace by running `kubectl describe ns <namespace>-<stage>-<name>-
 ### Pod Security Policy
 
 [Pod Security Policies](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) can be used to add an additional Layer of Security to your Namespaces, preventing unauthorized people to create Pods with dangerous settings. This module does **not** create a Pod Security Policy for you as it is a global Cluster Resource.
-You need to specify your PSP-Name using `pod_security_policy_name` and set `enable_pod_security_policy` to `true`. 
+You need to provide a non empty value to `pod_security_policy_name` to enable PSP Permissions. 
 
 By default we allow `system:serviceaccounts:<namespace>` to use the PSP which enables for example default Service Accounts in your Namespace, created for your Deployments to create Pods matching the criterias specified in your PSP. If you want to allow for example humans creating Pods you will need to specify corresponding RBAC policies using `roles` variable which creates a Role and RoleBinding.
 
