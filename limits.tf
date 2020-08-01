@@ -1,3 +1,8 @@
+locals {
+  container_cpu_default    = var.max_cpu == 0 ? {} : { cpu = "50m" }
+  container_memory_default = var.max_memory == 0 ? {} : { memory = "64Mi" }
+  storage_amount_default   = var.max_storage == 0 ? {} : { storage = "2Gi" }
+}
 
 resource "kubernetes_limit_range" "limits" {
   metadata {
@@ -7,11 +12,8 @@ resource "kubernetes_limit_range" "limits" {
 
   spec {
     limit {
-      type = "PersistentVolumeClaim"
-
-      default = {
-        storage = "2Gi"
-      }
+      type    = "PersistentVolumeClaim"
+      default = local.storage_amount_default
 
       max = {
         storage = var.max_storage
@@ -19,12 +21,8 @@ resource "kubernetes_limit_range" "limits" {
     }
 
     limit {
-      type = "Container"
-
-      default = {
-        cpu    = "50m"
-        memory = "64Mi"
-      }
+      type    = "Container"
+      default = merge(local.container_cpu_default, local.container_memory_default)
 
       max = {
         cpu    = var.max_cpu
