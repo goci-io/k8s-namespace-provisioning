@@ -38,7 +38,7 @@ locals {
   service_accounts_roles = [for s in var.service_accounts : {
     name             = s.name
     rules            = s.rules
-    service_accounts = s.name
+    service_accounts = [s.name]
   }]
 
   pull_secret_keys = keys(var.image_pull_secrets)
