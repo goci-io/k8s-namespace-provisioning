@@ -36,7 +36,7 @@ resource "kubernetes_role" "service_accounts" {
 
 locals {
   service_accounts_roles = [for s in var.service_accounts : {
-    name             = s.name
+    name             = format("%s-sa", s.name)
     rules            = s.rules
     service_accounts = [s.name]
   }]
