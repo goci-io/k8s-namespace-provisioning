@@ -152,5 +152,5 @@ variable "http_ingress_ports" {
 variable "http_egress_ports" {
   type        = list(any)
   description = "Ports allowed to connect to"
-  default     = [443]
+  default     = []
 }
