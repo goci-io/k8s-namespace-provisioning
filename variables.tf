@@ -142,3 +142,15 @@ variable "http_ingress_namespaces" {
   default     = ["cluster"]
   description = "Namespaces to allow ingress traffic from"
 }
+
+variable "http_ingress_ports" {
+  type        = list(any)
+  description = "Ports allowed to be used by external Services"
+  default     = ["http", "https"]
+}
+
+variable "http_egress_ports" {
+  type        = list(any)
+  description = "Ports allowed to connect to"
+  default     = [443]
+}
