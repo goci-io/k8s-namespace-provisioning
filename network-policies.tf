@@ -27,14 +27,13 @@ resource "kubernetes_network_policy" "allow_http" {
     pod_selector {}
 
     ingress {
-      ports {
-        port     = "http"
-        protocol = "TCP"
-      }
+      dynamic "ports" {
+        for_each = var.http_ingress_ports
 
-      ports {
-        port     = "https"
-        protocol = "TCP"
+        content {
+          port     = ports.value
+          protocol = "TCP"
+        }
       }
 
       dynamic "from" {
@@ -70,6 +69,15 @@ resource "kubernetes_network_policy" "allow_http" {
           ip_block {
             cidr = to.value
           }
+        }
+      }
+
+      dynamic "ports" {
+        for_each = var.http_egress_ports
+
+        content {
+          port     = ports.value
+          protocol = "TCP"
         }
       }
     }
