@@ -23,7 +23,7 @@ resource "kubernetes_network_policy" "allow" {
   }
 
   spec {
-    policy_types = [var.network_policy_types]
+    policy_types = var.network_policy_types
     pod_selector {}
 
     ingress {
