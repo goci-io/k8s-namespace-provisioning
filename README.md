@@ -38,6 +38,32 @@ You need to provide a non empty value to `pod_security_policy_name` to enable PS
 
 By default we allow `system:serviceaccounts:<namespace>` to use the PSP which enables for example default Service Accounts in your Namespace, created for your Deployments to create Pods matching the criterias specified in your PSP. If you want to allow for example humans creating Pods you will need to specify corresponding RBAC policies using `roles` variable which creates a Role and RoleBinding.
 
+### Network Policies
+
+Network Policies can restrict In- and Outbound Traffic. This is really useful in Multi-Tenant Clusters or in Situations where you dont fully Trust a specific Namespace. To setup Network Policies you need to enable `enable_network_policies` (true).
+
+The following Options are available when configuring Network Policies:
+
+`network_policy_type` (Ingress, Egress)  
+`network_deny_all_policy` (true)  
+`http_egress_namespaces`, `http_egress_ip_blocks`, `http_egress_ports`   
+`http_ingress_namespaces`, `http_ingress_ip_blocks`, `http_ingress_ports`   
+
+Example:
+
+```hcl
+module "namespace" {
+  ...
+  enable_network_policies = true
+  http_egress_namespaces  = ["default"]
+  http_egress_ip_blocks   = ["0.0.0.0/0"]
+  http_ingress_namespaces = ["kube-system"]
+}
+```
+
+This would allow the Namespace to talk to the Internet and Default Namespace (where Kubernetes API Service exists).
+Additionally it allows `kube-system` Namespace to send Traffic to your Namespace (for example NGINX running in `kube-system`).
+
 ### Context
 
 This module is used at [goci.io](https://goci.io) to provision Kubernetes Namespaces for our Customers.
