@@ -121,7 +121,7 @@ variable "pod_security_policy_groups" {
 
 variable "enable_network_policies" {
   type        = bool
-  default     = true
+  default     = false
   description = "Deploys additional kubernetes network policies for the namespace created"
 }
 
@@ -133,7 +133,7 @@ variable "network_policy_types" {
 
 variable "network_deny_all_policy" {
   type        = bool
-  default     = false
+  default     = true
   description = "Deploys a Deny-All Network Policy. Only granted CIDRs and Namespaces will be allowed."
 }
 
