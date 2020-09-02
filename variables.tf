@@ -125,6 +125,18 @@ variable "enable_network_policies" {
   description = "Deploys additional kubernetes network policies for the namespace created"
 }
 
+variable "network_policy_types" {
+  type        = list(string)
+  default     = ["Egress", "Ingress"]
+  description = "Network Policy Types the Allow Rule will apply to. When choosing for example only Egress without a Deny Policy it will be allowed."
+}
+
+variable "network_deny_all_policy" {
+  type        = bool
+  default     = false
+  description = "Deploys a Deny-All Network Policy. Only granted CIDRs and Namespaces will be allowed."
+}
+
 variable "http_egress_namespaces" {
   type        = list(string)
   default     = ["default", "cluster"]
