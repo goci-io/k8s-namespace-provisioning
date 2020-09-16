@@ -28,7 +28,7 @@ resource "kubernetes_network_policy" "allow" {
 
     ingress {
       dynamic "ports" {
-        for_each = var.http_ingress_ports
+        for_each = var.network_ingress_ports
 
         content {
           port     = ports.value
@@ -37,7 +37,7 @@ resource "kubernetes_network_policy" "allow" {
       }
 
       dynamic "from" {
-        for_each = var.http_ingress_namespaces
+        for_each = var.network_ingress_namespaces
 
         content {
           namespace_selector {
@@ -49,7 +49,7 @@ resource "kubernetes_network_policy" "allow" {
 
     egress {
       dynamic "to" {
-        for_each = var.http_egress_namespaces
+        for_each = var.network_egress_namespaces
 
         content {
           namespace_selector {
@@ -59,7 +59,7 @@ resource "kubernetes_network_policy" "allow" {
       }
 
       dynamic "to" {
-        for_each = var.http_egress_ip_blocks
+        for_each = var.network_egress_ip_blocks
 
         content {
           ip_block {
@@ -69,7 +69,7 @@ resource "kubernetes_network_policy" "allow" {
       }
 
       dynamic "ports" {
-        for_each = var.http_egress_ports
+        for_each = var.network_egress_ports
 
         content {
           port     = ports.value
