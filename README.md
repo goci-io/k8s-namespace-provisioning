@@ -66,6 +66,9 @@ Additionally it allows Namespaces with a Label of `someLabel=value` to send Traf
 
 **Note:** Namespace Restrictions apply on **Labels**, not on Namespace Fields!
 
+This Module can only apply Policies to all Pods within your Namespace.
+To enable fine grained Control for Apps within the created Namespace, create your own Network Policies for now.
+
 ### Context
 
 This module is used at [goci.io](https://goci.io) to provision Kubernetes Namespaces for our Customers.

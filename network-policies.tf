@@ -1,4 +1,3 @@
-
 resource "kubernetes_network_policy" "deny_all" {
   count = var.enable_network_policies && var.network_deny_all_policy ? 1 : 0
 
@@ -36,6 +35,10 @@ resource "kubernetes_network_policy" "allow" {
         }
       }
 
+      from {
+        pod_selector {}
+      }
+
       dynamic "from" {
         for_each = var.network_ingress_namespaces
 
@@ -48,6 +51,10 @@ resource "kubernetes_network_policy" "allow" {
     }
 
     egress {
+      to {
+        pod_selector {}
+      }
+
       dynamic "to" {
         for_each = var.network_egress_namespaces
 
