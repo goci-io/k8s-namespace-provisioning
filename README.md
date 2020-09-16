@@ -55,14 +55,16 @@ Example:
 module "namespace" {
   ...
   enable_network_policies = true
-  http_egress_namespaces  = ["default"]
   http_egress_ip_blocks   = ["0.0.0.0/0"]
-  http_ingress_namespaces = ["kube-system"]
+  http_egress_namespaces  = [{ someLabel = "value"}]
+  http_ingress_namespaces = [{ someLabel = "value"}]
 }
 ```
 
-This would allow the Namespace to talk to the Internet and Default Namespace (where Kubernetes API Service exists).
-Additionally it allows `kube-system` Namespace to send Traffic to your Namespace (for example NGINX running in `kube-system`).
+This would allow the Namespace to talk to the Internet and a Namespace labeled with `someLabel` containing `value`.
+Additionally it allows Namespaces with a Label of `someLabel=value` to send Traffic to your Namespace.
+
+**Note:** Namespace Restrictions apply on **Labels**, not on Namespace Fields!
 
 ### Context
 

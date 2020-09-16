@@ -41,9 +41,7 @@ resource "kubernetes_network_policy" "allow" {
 
         content {
           namespace_selector {
-            match_labels = {
-              name = from.value
-            }
+            match_labels = from.value
           }
         }
       }
@@ -55,9 +53,7 @@ resource "kubernetes_network_policy" "allow" {
 
         content {
           namespace_selector {
-            match_labels = {
-              name = to.value
-            }
+            match_labels = to.value
           }
         }
       }
