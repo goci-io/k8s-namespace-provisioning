@@ -46,18 +46,18 @@ The following Options are available when configuring Network Policies:
 
 `network_policy_type` (Ingress, Egress)  
 `network_deny_all_policy` (true)  
-`http_egress_namespaces`, `http_egress_ip_blocks`, `http_egress_ports`   
-`http_ingress_namespaces`, `http_ingress_ip_blocks`, `http_ingress_ports`   
+`network_egress_namespaces`, `network_egress_ip_blocks`, `network_egress_ports`   
+`network_ingress_namespaces`, `network_ingress_ip_blocks`, `network_ingress_ports`   
 
 Example:
 
 ```hcl
 module "namespace" {
   ...
-  enable_network_policies = true
-  http_egress_ip_blocks   = ["0.0.0.0/0"]
-  http_egress_namespaces  = [{ someLabel = "value"}]
-  http_ingress_namespaces = [{ someLabel = "value"}]
+  enable_network_policies    = true
+  network_egress_ip_blocks   = ["0.0.0.0/0"]
+  network_egress_namespaces  = [{ someLabel = "value" }]
+  network_ingress_namespaces = [{ someLabel = "value" }]
 }
 ```
 

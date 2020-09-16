@@ -137,31 +137,31 @@ variable "network_deny_all_policy" {
   description = "Deploys a Deny-All Network Policy. Only granted CIDRs and Namespaces will be allowed."
 }
 
-variable "http_egress_namespaces" {
+variable "network_egress_namespaces" {
   type        = list(any)
   default     = []
   description = "Namespaces to allow egress traffic to"
 }
 
-variable "http_egress_ip_blocks" {
+variable "network_egress_ip_blocks" {
   type        = list(string)
   default     = []
   description = "IP Blocks to allow egress traffic to. Could be a NAT Gateway IP /32 to allow only Internet Traffic"
 }
 
-variable "http_ingress_namespaces" {
+variable "network_ingress_namespaces" {
   type        = list(any)
   default     = []
   description = "Namespaces to allow ingress traffic from"
 }
 
-variable "http_ingress_ports" {
+variable "network_ingress_ports" {
   type        = list(any)
   description = "Ports allowed to be used by external Services"
   default     = []
 }
 
-variable "http_egress_ports" {
+variable "network_egress_ports" {
   type        = list(any)
   description = "Ports allowed to connect to"
   default     = []
