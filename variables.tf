@@ -115,8 +115,8 @@ variable "pod_security_policy_name" {
 
 variable "pod_security_policy_groups" {
   type        = list(string)
-  default     = ["system:serviceaccounts"]
-  description = "Groups allowed to use the PSP specified in pod_security_policy_name"
+  default     = []
+  description = "Groups allowed to use the PSP specified in pod_security_policy_name. Defaults to all Service Accounts within Namespace"
 }
 
 variable "enable_network_policies" {
@@ -139,7 +139,7 @@ variable "network_deny_all_policy" {
 
 variable "http_egress_namespaces" {
   type        = list(string)
-  default     = ["default", "cluster"]
+  default     = []
   description = "Namespaces to allow egress traffic to"
 }
 
@@ -151,14 +151,14 @@ variable "http_egress_ip_blocks" {
 
 variable "http_ingress_namespaces" {
   type        = list(string)
-  default     = ["cluster"]
+  default     = []
   description = "Namespaces to allow ingress traffic from"
 }
 
 variable "http_ingress_ports" {
   type        = list(any)
   description = "Ports allowed to be used by external Services"
-  default     = ["http", "https"]
+  default     = []
 }
 
 variable "http_egress_ports" {
