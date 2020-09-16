@@ -138,7 +138,7 @@ variable "network_deny_all_policy" {
 }
 
 variable "http_egress_namespaces" {
-  type        = list(string)
+  type        = list(any)
   default     = []
   description = "Namespaces to allow egress traffic to"
 }
@@ -150,7 +150,7 @@ variable "http_egress_ip_blocks" {
 }
 
 variable "http_ingress_namespaces" {
-  type        = list(string)
+  type        = list(any)
   default     = []
   description = "Namespaces to allow ingress traffic from"
 }
